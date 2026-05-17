@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- === Блок метаданных страницы === -->
+  <meta charset="UTF-8"> <!-- кодировка документа -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- адаптация под мобильные устройства -->
+
+  <!-- === Блок заголовка страницы === -->
+  <title>Roboflow + Replit Example</title> <!-- заголовок вкладки браузера -->
+
+  <!-- === Блок подключения библиотеки Roboflow === -->
+  <script src="https://cdn.jsdelivr.net/npm/inferencejs"></script> <!-- SDK inferencejs для запуска модели в браузере -->
+  
+  <!-- === Блок подключения стилей === -->
+  <link rel="stylesheet" href="/static/styles.css" />
+
+  <!-- === Блок задания параметров модели === -->
+  <script>
+    var publishable_key = "rf_l8GLzZgLQL6gZLAin1iU"; // открытый ключ Roboflow для доступа к модели
+
+    const CONFIDENCE_THRESHOLD = 0.1; // минимальный системный порог достоверности
+    const MODEL_NAME = "microsoft-coco"; // имя используемой модели
+    const MODEL_VERSION = 9; // версия модели
+  </script>
+</head>
+
+<body>
+  <main>
+    <!-- === Блок заголовка и текстового описания === -->
+    <h1>Roboflow + Replit Web Example 🚀</h1>
+    <p>Roboflow enables you to build and run custom computer vision models in your browser...</p>
+    <p>The below example runs Microsoft's COCO model to identify common objects...</p>
+    <p>Using the demo below, you can identify 80 different objects using your webcam...</p>
+
+    <!-- === Блок индикатора загрузки === -->
+    <p id="loading">Loading...</p>
+
+    <!-- === Блок области отображения распознавания === -->
+    <section class="infer-widget">
+      <canvas width="640" height="480" id="video_canvas"></canvas> <!-- canvas для рамок и подписей -->
+    </section>
+
+    <!-- === Блок пользовательской настройки порога === -->
+    <section id="settings">
+      <label for="confidence">Prediction Confidence %</label><br>
+      <input type="range" min="1" max="100" value="60" class="slider" id="confidence">
+    </section>
+
+    <!-- === Блок ссылок на внешние ресурсы === -->
+    <section class="links">
+      <a href="https://blog.roboflow.com/getting-started-with-roboflow/" class="styled-button">Build a Custom Model</a>
+      <a href="https://universe.roboflow.com" class="styled-button styled-button-turqouise">Explore 50k+ Models and Datasets</a>
+    </section>
+
+    <!-- === Блок подключения клиентской логики === -->
+    <script src="/static/script.js"></script> <!-- основной JavaScript-файл приложения -->
+  </main>
+</body>
+</html>
