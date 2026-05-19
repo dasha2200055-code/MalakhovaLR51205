@@ -1,37 +1,52 @@
 # The command that runs the program. If the interpreter field is set, it will have priority and this run command will do nothing
-run = "python3 main.py"
+
+run = "python3 main.py" # Команда, выполняемая при нажатии Run, запускает Flask-сервер через интерпретатор Python 3
 
 # The primary language of the repl. There can be others, though!
-language = "python3"
-entrypoint = "main.py"
+language = "python3" # Основной язык реплики; Replit использует это для
+выбора инструментов и подсветки синтаксиса
+entrypoint = "main.py"  # Файл, открываемый по умолчанию в редакторе при открытии реплики
 # A list of globs that specify which files and directories should
 # be hidden in the workspace.
-hidden = ["venv", ".config", "**/__pycache__", "**/.mypy_cache", "**/*.pyc"]
-modules = ["python-3.10"]
+hidden = ["venv", ".config", "**/__pycache__", "**/.mypy_cache", "**/*.pyc"] # Пути, скрытые в файловом менеджере Replit; не влияют на выполнение
+modules = ["python-3.10"] # Модуль окружения Replit, подключающий конкретную версию Python 3.10
 
 # Specifies which nix channel to use when building the environment.
-[nix]
-channel = "stable-22_11"
-packages = ["gdb"]
 
-[env]
+# === Конфигурация nix-окружения ===
+[nix]
+channel = "stable-22_11"  # Канал пакетов Nix от ноября 2022; фиксирует версии всех системных пакетов
+packages = ["gdb"] # Системный отладчик GNU Debugger, доступный внутри реплики
+
+# === Переменные окружения ===
+[env] # Секция для переменных среды (API-ключи, настройки); в данном шаблоне не заполнена
+
 
 # Enable unit tests. This is only supported for a few languages.
+# === Юнит-тесты ===
 [unitTest]
-language = "python3"
+language = "python3" # Указывает Replit использовать pytest/unittest при запуске тестов
+
 
 # These are the files that need to be preserved when this 
 # language template is used as the base language template
 # for Python repos imported from GitHub
+# === Импорт из GitHub ===
 [gitHubImport]
-requiredFiles = [".replit", "replit.nix", ".config", "venv"]
+requiredFiles = [".replit", "replit.nix", ".config", "venv"] # Файлы, которые
+сохраняются при создании реплики на основе GitHub-репозитория
 
+# === Настройки деплоя ===
 [deployment]
-run = ["sh", "-c", "python3 main.py"]
-
+run = ["sh", "-c", "python3 main.py"] # Команда запуска при деплое в
+облако Replit (отличается от run: передаётся через sh)
+# === Проброс портов ===
 [[ports]]
-localPort = 5000
-externalPort = 80
-
+localPort = 5000 # Порт, на котором Flask слушает внутри реплики
+(app.run("0.0.0.0") использует по умолчанию 5000)
+externalPort = 80 # Внешний HTTP-порт, по которому реплика доступна
+в браузере через публичный URL
+# === Настройки агента ===
 [agent]
-expertMode = true
+expertMode = true # Расширенный режим Replit Agent; открывает доступ
+к дополнительным инструментам автодополнения и анализа
