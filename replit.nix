@@ -1,6 +1,6 @@
-{ pkgs }: {
-  deps = [
-    pkgs.replitPackages.prybar-python310
-    pkgs.replitPackages.stderred
-  ];
+{ pkgs }: { # Функция, принимающая атрибут pkgs – коллекцию всех пакетов выбранного nix-канала
+ deps = [ # Список системных зависимостей, устанавливаемых в окружение при сборке реплики
+ pkgs.replitPackages.prybar-python310 # Интерпретатор Python 3.10, адаптированный Replit: добавляет REPL-режим и интеграцию с платформой
+ pkgs.replitPackages.stderred # Библиотека-перехватчик stderr: подсвечивает вывод ошибок красным цветом в консоли Replit для удобства отладки
+ ];
 }
